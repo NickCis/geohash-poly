@@ -1,19 +1,18 @@
 var Readable = require('stream').Readable,
   geohash = require('ngeohash'),
   pip = require('point-in-polygon'),
-  turfExtent = require('turf-extent'),
-  turfFeaturecollection = require('turf-featurecollection'),
-  turfPolygon = require('turf-polygon'),
-  turfIntersect = require('turf-intersect'),
+  turfExtent = require('@turf/bbox').default,
+  turfHelpers = require('@turf/helpers'),
+  turfIntersect = require('@turf/intersect').default,
   turf = {
   	extent: turfExtent,
-  	featurecollection: turfFeaturecollection,
-  	polygon: turfPolygon,
+  	featurecollection: turfHelpers.featureCollection,
+  	polygon: turfHelpers.polygon,
   	intersect: turfIntersect
   },
   through2 = require('through2'),
   async = require('async'),
-  geojsonArea = require('geojson-area');
+  geojsonArea = require('@mapbox/geojson-area');
 
 /**
  * utilizing point-in-poly but providing support for geojson polys and holes.
